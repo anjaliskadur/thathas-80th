@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 350 280" width="350" height="280">
+  <defs>
+    <radialGradient id="glow20" cx="50%" cy="42%" r="65%">
+      <stop offset="0%" stop-color="#221c14"/>
+      <stop offset="100%" stop-color="#120E0C"/>
+    </radialGradient>
+    <filter id="grain20">
+      <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" stitchTiles="stitch" result="noise"/>
+      <feColorMatrix in="noise" type="matrix" values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.03 0"/>
+      <feComposite operator="over" in2="SourceGraphic"/>
+    </filter>
+  </defs>
+  <rect width="350" height="280" fill="url(#glow20)"/>
+  <rect x="10" y="10" width="330" height="260" fill="none" stroke="#8A6B2E" stroke-width="1"/>
+  <g transform="translate(35, 10)" opacity="0.85"><g fill="none" stroke="#C6A15B" stroke-width="2"><path d="M140 108c-14-10-34-12-50-6v78c16-6 36-4 50 6"/><path d="M140 108c14-10 34-12 50-6v78c-16-6-36-4-50 6"/><path d="M140 108v78"/></g></g>
+  <rect width="350" height="280" filter="url(#grain20)" opacity="0.5"/>
+</svg>

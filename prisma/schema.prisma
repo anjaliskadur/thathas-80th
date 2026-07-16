@@ -1,0 +1,52 @@
+// Prisma schema for Thatha's 80th Birthday website
+// Database: Postgres (Vercel Postgres / Neon both work great with Vercel deployments)
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("POSTGRES_PRISMA_URL") // pooled connection, used at runtime
+  directUrl = env("POSTGRES_URL_NON_POOLING") // direct connection, used for migrations
+}
+
+enum MediaType {
+  PHOTO
+  VIDEO
+}
+
+enum RsvpStatus {
+  ATTENDING
+  NOT_ATTENDING
+}
+
+model Rsvp {
+  id             String     @id @default(cuid())
+  fullName       String
+  email          String?
+  phone          String?
+  status         RsvpStatus @default(ATTENDING)
+  guestCount     Int        @default(1)
+  dietaryNotes   String?
+  note           String?
+  createdAt      DateTime   @default(now())
+  updatedAt      DateTime   @updatedAt
+
+  @@index([createdAt])
+}
+
+model Memory {
+  id            String     @id @default(cuid())
+  authorName    String
+  message       String?
+  mediaUrl      String?
+  mediaType     MediaType?
+  // sha-256 hash of a private edit token handed to the browser that created
+  // this entry. Never expose the raw token or this hash to the client list API.
+  editTokenHash String
+  createdAt     DateTime   @default(now())
+  updatedAt     DateTime   @updatedAt
+
+  @@index([createdAt])
+}

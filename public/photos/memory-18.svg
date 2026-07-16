@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 350 280" width="350" height="280">
+  <defs>
+    <radialGradient id="glow18" cx="50%" cy="42%" r="65%">
+      <stop offset="0%" stop-color="#221c14"/>
+      <stop offset="100%" stop-color="#0C0F0E"/>
+    </radialGradient>
+    <filter id="grain18">
+      <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" stitchTiles="stitch" result="noise"/>
+      <feColorMatrix in="noise" type="matrix" values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.03 0"/>
+      <feComposite operator="over" in2="SourceGraphic"/>
+    </filter>
+  </defs>
+  <rect width="350" height="280" fill="url(#glow18)"/>
+  <rect x="10" y="10" width="330" height="260" fill="none" stroke="#8A6B2E" stroke-width="1"/>
+  <g transform="translate(35, 10)" opacity="0.85"><g fill="none" stroke="#C6A15B" stroke-width="2"><path d="M96 130h96v20c0 28-22 46-48 46s-48-18-48-46v-20z"/><path d="M192 138c14-2 22 6 22 18s-10 20-24 18"/><path d="M110 118c2-8 8-14 8-22M140 118c2-8 8-14 8-22M170 118c2-8 8-14 8-22" /></g></g>
+  <rect width="350" height="280" filter="url(#grain18)" opacity="0.5"/>
+</svg>

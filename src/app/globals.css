@@ -1,0 +1,144 @@
+@import "tailwindcss";
+
+:root {
+  /* --- Palette --- */
+  --color-ink: #07070a;          /* near-black base */
+  --color-ink-raised: #100e0d;   /* panels / cards */
+  --color-gold: #c6a15b;         /* primary accent */
+  --color-gold-soft: #e6d5ac;    /* highlighted text on dark */
+  --color-gold-dim: #6f592f;     /* hairlines, dividers */
+  --color-maroon: #5c1420;       /* secondary accent, celebration warmth */
+  --color-ivory: #f4ecdd;        /* body copy on dark */
+  --color-stone: #a39a89;        /* muted / secondary text */
+
+  --font-display: var(--font-fraunces);
+  --font-body: var(--font-manrope);
+}
+
+@theme inline {
+  --color-ink: var(--color-ink);
+  --color-ink-raised: var(--color-ink-raised);
+  --color-gold: var(--color-gold);
+  --color-gold-soft: var(--color-gold-soft);
+  --color-gold-dim: var(--color-gold-dim);
+  --color-maroon: var(--color-maroon);
+  --color-ivory: var(--color-ivory);
+  --color-stone: var(--color-stone);
+  --font-display: var(--font-display);
+  --font-body: var(--font-body);
+}
+
+html {
+  color-scheme: dark;
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-ink);
+  color: var(--color-ivory);
+  font-family: var(--font-body);
+}
+
+/* Fine gold hairline used throughout instead of harsh borders */
+.hairline {
+  border: 1px solid color-mix(in srgb, var(--color-gold) 35%, transparent);
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+
+/* --- Photo wall marquee (alternating vertical polaroid columns) --- */
+.marquee-viewport {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  display: grid;
+  grid-auto-flow: column;
+  gap: clamp(0.65rem, 1.4vw, 1.15rem);
+  padding: 0 clamp(0.35rem, 0.8vw, 0.75rem);
+}
+
+.marquee-col {
+  position: relative;
+  overflow: hidden;
+  height: 100%;
+}
+
+.marquee-track {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(0.75rem, 1.6vw, 1.25rem);
+  width: 100%;
+  will-change: transform;
+}
+
+.marquee-track.dir-up {
+  animation-name: marquee-up;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+.marquee-track.dir-down {
+  animation-name: marquee-down;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+@keyframes marquee-up {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-50%);
+  }
+}
+
+@keyframes marquee-down {
+  from {
+    transform: translateY(-50%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track.dir-up,
+  .marquee-track.dir-down {
+    animation: none;
+  }
+}
+
+.polaroid {
+  position: relative;
+  flex-shrink: 0;
+  margin-inline: auto;
+  width: 92%;
+  padding: 0.45rem 0.45rem 1.35rem;
+  background: #f2e8d8;
+  border-radius: 2px;
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.35) inset,
+    0 8px 22px rgba(0, 0, 0, 0.45);
+}
+
+.polaroid:nth-child(3n) {
+  transform: rotate(-2.2deg);
+}
+
+.polaroid:nth-child(3n + 1) {
+  transform: rotate(1.6deg);
+}
+
+.polaroid:nth-child(3n + 2) {
+  transform: rotate(-0.7deg);
+}
+
+.polaroid img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 1px;
+  background: #1a1612;
+}
