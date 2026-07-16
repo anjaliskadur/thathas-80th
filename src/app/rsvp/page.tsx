@@ -3,12 +3,17 @@ import { SiteHeader } from "@/components/layout/site-header";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { RsvpForm } from "@/components/rsvp/rsvp-form";
 import { siteConfig } from "@/lib/site-config";
+import { getSiteConfig } from "@/lib/get-site-config";
 
 export const metadata: Metadata = {
   title: `RSVP — ${siteConfig.honoreeName}'s ${siteConfig.eventTitle}`,
 };
 
-export default function RsvpPage() {
+export const dynamic = "force-dynamic";
+
+export default async function RsvpPage() {
+  const config = await getSiteConfig();
+
   return (
     <>
       <SiteHeader />
@@ -21,7 +26,7 @@ export default function RsvpPage() {
             RSVP
           </h1>
           <p className="mt-4 text-[var(--color-stone)]">
-            Please respond by {siteConfig.rsvpDeadlineLabel} so we can plan accordingly.
+            Please respond by {config.rsvpDeadlineLabel} so we can plan accordingly.
           </p>
         </div>
 

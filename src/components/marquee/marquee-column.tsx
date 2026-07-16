@@ -1,4 +1,3 @@
-import Image from "next/image";
 import type { WallColumn } from "@/lib/photo-wall";
 
 export function MarqueeColumn({ images, direction, duration, animationDelay }: WallColumn) {
@@ -16,15 +15,17 @@ export function MarqueeColumn({ images, direction, duration, animationDelay }: W
       >
         {looped.map((src, i) => (
           <figure className="polaroid" key={`${src}-${i}`}>
-            <Image
+            {/* Plain img: dozens of wall photos would overwhelm next/image's optimizer */}
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
               src={src}
               alt=""
               width={280}
               height={350}
               className="aspect-[4/5] h-auto w-full select-none object-cover"
               draggable={false}
-              priority={i < 2}
-              sizes="(max-width: 768px) 30vw, 16vw"
+              loading={i < 4 ? "eager" : "lazy"}
+              decoding="async"
             />
           </figure>
         ))}

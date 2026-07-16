@@ -11,14 +11,17 @@ export function SiteHeader() {
         >
           {siteConfig.honoreeShortName}&apos;s 80th
         </Link>
-        <nav className="flex items-center gap-5 text-sm text-[var(--color-stone)]">
+        <nav className="flex items-center gap-4 text-sm text-[var(--color-stone)] sm:gap-5">
           <Link href="/#details" className="hidden hover:text-[var(--color-gold-soft)] sm:inline">
             Details
+          </Link>
+          <Link href="/photos" className="hover:text-[var(--color-gold-soft)]">
+            Photos
           </Link>
           <Link href="/rsvp" className="hover:text-[var(--color-gold-soft)]">
             RSVP
           </Link>
-          <Link href="/memory-wall" className="hover:text-[var(--color-gold-soft)]">
+          <Link href="/memory-wall" className="hidden hover:text-[var(--color-gold-soft)] sm:inline">
             Memory Wall
           </Link>
         </nav>

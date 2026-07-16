@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "generate:placeholders": "node scripts/generate-placeholder-photos.mjs"
+    "generate:placeholders": "node scripts/generate-placeholder-photos.mjs",
+    "optimize:wall": "node scripts/optimize-wall-photos.mjs"
   },
   "dependencies": {
     "@prisma/client": "6.19.3",
@@ -21,6 +22,7 @@
     "next": "16.2.10",
     "react": "19.2.4",
     "react-dom": "19.2.4",
+    "server-only": "^0.0.1",
     "tailwind-merge": "^3.6.0",
     "zod": "^4.4.3"
   },
@@ -32,6 +34,7 @@
     "eslint": "^9",
     "eslint-config-next": "16.2.10",
     "prisma": "6.19.3",
+    "sharp": "^0.35.3",
     "tailwindcss": "^4",
     "typescript": "^5"
   },

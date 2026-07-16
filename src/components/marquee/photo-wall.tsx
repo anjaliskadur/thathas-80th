@@ -1,8 +1,10 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { buildColumns, type WallColumn } from "@/lib/photo-wall";
+import { useState } from "react";
+import { buildColumns, pickHeroImages } from "@/lib/photo-wall";
 import { MarqueeColumn } from "./marquee-column";
+
+const HERO_MAX = 24;
 
 export function PhotoWall({
   images,
@@ -11,14 +13,12 @@ export function PhotoWall({
   images: string[];
   columnCount?: number;
 }) {
-  const [columns, setColumns] = useState<WallColumn[] | null>(null);
+  // Cap + shuffle once per mount so every visit looks different.
+  const [columns] = useState(() =>
+    buildColumns(pickHeroImages(images, HERO_MAX), columnCount)
+  );
 
-  useEffect(() => {
-    // Shuffle on the client so every visit gets a fresh arrangement.
-    setColumns(buildColumns(images, columnCount));
-  }, [images, columnCount]);
-
-  if (!columns) {
+  if (columns.length === 0) {
     return (
       <div
         aria-hidden
