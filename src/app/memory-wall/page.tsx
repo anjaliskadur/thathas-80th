@@ -17,7 +17,8 @@ export default async function MemoryWallPage() {
     "/memories?select=id,author_name,message,media_url,media_type,created_at,updated_at&order=created_at.desc"
   );
 
-  const initialMemories: MemoryDTO[] = result.error ? [] : result.data.map(toMemoryDTO);
+  const initialMemories: MemoryDTO[] =
+    result.error || !result.data ? [] : result.data.map(toMemoryDTO);
 
   return (
     <>

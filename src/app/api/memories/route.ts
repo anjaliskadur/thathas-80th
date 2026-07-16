@@ -9,7 +9,7 @@ export async function GET() {
     "/memories?select=id,author_name,message,media_url,media_type,created_at,updated_at&order=created_at.desc"
   );
 
-  if (result.error) {
+  if (result.error || !result.data) {
     return NextResponse.json({ message: "Could not load memories." }, { status: 500 });
   }
 
@@ -63,7 +63,8 @@ export async function POST(request: NextRequest) {
     },
   });
 
-  if (result.error || !result.data?.[0]) {
+  const created = result.data?.[0];
+  if (result.error || !created) {
     return NextResponse.json(
       { message: "Could not save memory. Please try again." },
       { status: 500 }
@@ -71,7 +72,7 @@ export async function POST(request: NextRequest) {
   }
 
   return NextResponse.json(
-    { memory: toMemoryDTO(result.data[0]), editToken },
+    { memory: toMemoryDTO(created), editToken },
     { status: 201 }
   );
 }

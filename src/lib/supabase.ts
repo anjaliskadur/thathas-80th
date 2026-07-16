@@ -50,8 +50,9 @@ export async function supabaseRest<T>(
     return { data: null, error: text || res.statusText, status: res.status };
   }
 
+  // 204 No Content (e.g. DELETE) — success with no JSON body.
   if (res.status === 204) {
-    return { data: null as T, error: null };
+    return { data: null as unknown as T, error: null };
   }
 
   const data = (await res.json()) as T;

@@ -20,8 +20,9 @@ async function isAuthorized(id: string, editToken: string | undefined, request: 
   const result = await supabaseRest<Pick<MemoryRow, "edit_token_hash">[]>(
     `/memories?id=eq.${encodeURIComponent(id)}&select=edit_token_hash`
   );
-  if (result.error || !result.data?.[0]) return false;
-  return verifyEditToken(editToken, result.data[0].edit_token_hash!);
+  const row = result.data?.[0];
+  if (result.error || !row?.edit_token_hash) return false;
+  return verifyEditToken(editToken, row.edit_token_hash);
 }
 
 export async function PATCH(
@@ -64,11 +65,12 @@ export async function PATCH(
     }
   );
 
-  if (result.error || !result.data?.[0]) {
+  const updated = result.data?.[0];
+  if (result.error || !updated) {
     return NextResponse.json({ message: "Could not update memory." }, { status: 500 });
   }
 
-  return NextResponse.json({ memory: toMemoryDTO(result.data[0]) });
+  return NextResponse.json({ memory: toMemoryDTO(updated) });
 }
 
 export async function DELETE(
@@ -89,7 +91,8 @@ export async function DELETE(
   const existing = await supabaseRest<Pick<MemoryRow, "media_url">[]>(
     `/memories?id=eq.${encodeURIComponent(id)}&select=media_url`
   );
-  if (existing.error || !existing.data?.[0]) {
+  const existingRow = existing.data?.[0];
+  if (existing.error || !existingRow) {
     return NextResponse.json({ message: "Memory not found." }, { status: 404 });
   }
 
@@ -100,8 +103,8 @@ export async function DELETE(
     return NextResponse.json({ message: "Could not delete memory." }, { status: 500 });
   }
 
-  if (existing.data[0].media_url) {
-    await supabaseRemoveObject(existing.data[0].media_url);
+  if (existingRow.media_url) {
+    await supabaseRemoveObject(existingRow.media_url);
   }
 
   return NextResponse.json({ success: true });
