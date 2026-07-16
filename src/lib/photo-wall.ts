@@ -1,32 +1,31 @@
+import fs from "fs";
+import path from "path";
+
+const IMAGE_EXT = /\.(jpe?g|png|webp|gif)$/i;
+
+/** Placeholder SVGs used only if public/photos/wall is empty. */
+const PLACEHOLDER_IMAGES = Array.from({ length: 20 }, (_, i) => {
+  const n = String(i + 1).padStart(2, "0");
+  return `/photos/memory-${n}.svg`;
+});
+
 /**
- * Photos shown in the homepage marquee wall.
- *
- * Drop real family photos into public/photos/ (jpg/png/webp) and list the
- * filenames here. On every visit the wall shuffles order, column placement,
- * and animation phase so it never opens on the same pictures.
+ * Reads every image in public/photos/wall.
+ * Drop new jpg/png/webp files there — no code changes needed; redeploy to pick them up.
  */
-export const photoWallImages = [
-  "memory-01.svg",
-  "memory-02.svg",
-  "memory-03.svg",
-  "memory-04.svg",
-  "memory-05.svg",
-  "memory-06.svg",
-  "memory-07.svg",
-  "memory-08.svg",
-  "memory-09.svg",
-  "memory-10.svg",
-  "memory-11.svg",
-  "memory-12.svg",
-  "memory-13.svg",
-  "memory-14.svg",
-  "memory-15.svg",
-  "memory-16.svg",
-  "memory-17.svg",
-  "memory-18.svg",
-  "memory-19.svg",
-  "memory-20.svg",
-].map((file) => `/photos/${file}`);
+export function getPhotoWallImages(): string[] {
+  const dir = path.join(process.cwd(), "public", "photos", "wall");
+  if (!fs.existsSync(dir)) return PLACEHOLDER_IMAGES;
+
+  const files = fs
+    .readdirSync(dir)
+    .filter((name) => IMAGE_EXT.test(name) && !name.startsWith("."))
+    .sort((a, b) => a.localeCompare(b, undefined, { sensitivity: "base" }));
+
+  if (files.length === 0) return PLACEHOLDER_IMAGES;
+
+  return files.map((name) => `/photos/wall/${encodeURIComponent(name)}`);
+}
 
 export type WallColumn = {
   images: string[];
@@ -48,9 +47,8 @@ export function shuffle<T>(items: readonly T[]): T[] {
 }
 
 /**
- * Splits a (usually pre-shuffled) photo list into alternating up/down columns,
- * rotates each column's stack so the first visible frames differ, and varies
- * speed + phase so the wall feels organic.
+ * Splits a photo list into alternating up/down columns, rotates each column's
+ * stack so the first visible frames differ, and varies speed + phase.
  */
 export function buildColumns(
   images: readonly string[],

@@ -4,9 +4,12 @@ import { WelcomeCard } from "@/components/hero/welcome-card";
 import { SiteHeader } from "@/components/layout/site-header";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { LinkButton } from "@/components/ui/button";
+import { getPhotoWallImages } from "@/lib/photo-wall";
 import { siteConfig } from "@/lib/site-config";
 
 export default function HomePage() {
+  const wallImages = getPhotoWallImages();
+
   return (
     <>
       <SiteHeader />
@@ -14,7 +17,7 @@ export default function HomePage() {
       <section className="relative min-h-[100svh] overflow-hidden">
         {/* Full-bleed alternating polaroid columns sit behind the welcome card */}
         <div className="pointer-events-none absolute inset-0 z-0">
-          <PhotoWall />
+          <PhotoWall images={wallImages} />
         </div>
         {/* Soft vignette — keeps the card readable without hiding the wall */}
         <div

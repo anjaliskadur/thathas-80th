@@ -21,9 +21,10 @@ export function MarqueeColumn({ images, direction, duration, animationDelay }: W
               alt=""
               width={280}
               height={350}
-              className="h-auto w-full select-none"
+              className="aspect-[4/5] h-auto w-full select-none object-cover"
               draggable={false}
               priority={i < 2}
+              sizes="(max-width: 768px) 30vw, 16vw"
             />
           </figure>
         ))}

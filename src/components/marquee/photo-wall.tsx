@@ -1,17 +1,22 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { buildColumns, photoWallImages, type WallColumn } from "@/lib/photo-wall";
+import { buildColumns, type WallColumn } from "@/lib/photo-wall";
 import { MarqueeColumn } from "./marquee-column";
 
-export function PhotoWall({ columnCount = 6 }: { columnCount?: number }) {
+export function PhotoWall({
+  images,
+  columnCount = 6,
+}: {
+  images: string[];
+  columnCount?: number;
+}) {
   const [columns, setColumns] = useState<WallColumn[] | null>(null);
 
   useEffect(() => {
-    // Shuffle on the client so every visit (and every soft navigation home)
-    // gets a fresh arrangement — not a build-time snapshot.
-    setColumns(buildColumns(photoWallImages, columnCount));
-  }, [columnCount]);
+    // Shuffle on the client so every visit gets a fresh arrangement.
+    setColumns(buildColumns(images, columnCount));
+  }, [images, columnCount]);
 
   if (!columns) {
     return (
