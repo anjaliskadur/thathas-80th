@@ -26,7 +26,7 @@ export default async function HomePage() {
         {/* Mobile: even dim across the whole wall (no edge fade). Desktop: soft vignette. */}
         <div
           aria-hidden
-          className="pointer-events-none absolute inset-0 z-[1] bg-[var(--color-ink)]/45 sm:bg-[radial-gradient(ellipse_at_center,transparent_10%,var(--color-ink)_78%)]"
+          className="pointer-events-none absolute inset-0 z-[1] bg-[var(--color-ink)]/65 sm:bg-[radial-gradient(ellipse_at_center,transparent_10%,var(--color-ink)_78%)]"
         />
         <div
           aria-hidden
