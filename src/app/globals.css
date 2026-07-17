@@ -123,16 +123,36 @@ body {
     0 8px 22px rgba(0, 0, 0, 0.45);
 }
 
-.polaroid:nth-child(3n) {
-  transform: rotate(-2.2deg);
+/* Rotations only on the scrolling wall — gallery stays flat to avoid hover reflow glitches */
+@media (min-width: 768px) {
+  .marquee-track .polaroid:nth-child(3n) {
+    transform: rotate(-2.2deg);
+  }
+
+  .marquee-track .polaroid:nth-child(3n + 1) {
+    transform: rotate(1.6deg);
+  }
+
+  .marquee-track .polaroid:nth-child(3n + 2) {
+    transform: rotate(-0.7deg);
+  }
 }
 
-.polaroid:nth-child(3n + 1) {
-  transform: rotate(1.6deg);
-}
+@media (max-width: 767px) {
+  .marquee-viewport {
+    gap: 0.4rem;
+    padding: 0 0.25rem;
+  }
 
-.polaroid:nth-child(3n + 2) {
-  transform: rotate(-0.7deg);
+  .marquee-track {
+    gap: 0.55rem;
+  }
+
+  .marquee-track .polaroid {
+    width: 100%;
+    padding: 0.3rem 0.3rem 0.85rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  }
 }
 
 .polaroid img {
@@ -141,4 +161,10 @@ body {
   height: auto;
   border-radius: 1px;
   background: #1a1612;
+}
+
+.gallery-polaroid {
+  width: 100%;
+  margin: 0;
+  transform: none;
 }

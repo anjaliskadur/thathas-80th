@@ -15,16 +15,16 @@ export function SiteHeader() {
 
   return (
     <header className="sticky top-0 z-30 border-b border-[var(--color-gold-dim)]/40 bg-[var(--color-ink)]/85 backdrop-blur-md">
-      <div className="flex w-full items-center justify-between px-5 py-4 sm:px-8 lg:px-10">
+      <div className="flex w-full items-center justify-between gap-3 px-4 py-3 sm:px-8 sm:py-4 lg:px-10">
         <Link
           href="/"
           onClick={handleBrandClick}
-          className="font-[family-name:var(--font-display)] text-sm tracking-[0.2em] text-[var(--color-gold-soft)] uppercase"
+          className="shrink-0 font-[family-name:var(--font-display)] text-xs tracking-[0.18em] text-[var(--color-gold-soft)] uppercase sm:text-sm sm:tracking-[0.2em]"
         >
           {siteConfig.honoreeShortName}&apos;s 80th
         </Link>
-        <nav className="flex items-center gap-4 text-sm text-[var(--color-stone)] sm:gap-5">
-          <Link href="/#details" className="hidden hover:text-[var(--color-gold-soft)] sm:inline">
+        <nav className="flex flex-wrap items-center justify-end gap-x-3 gap-y-1 text-[11px] text-[var(--color-stone)] sm:gap-x-5 sm:text-sm">
+          <Link href="/#details" className="hover:text-[var(--color-gold-soft)]">
             Details
           </Link>
           <Link href="/photos" className="hover:text-[var(--color-gold-soft)]">
@@ -33,7 +33,7 @@ export function SiteHeader() {
           <Link href="/rsvp" className="hover:text-[var(--color-gold-soft)]">
             RSVP
           </Link>
-          <Link href="/memory-wall" className="hidden hover:text-[var(--color-gold-soft)] sm:inline">
+          <Link href="/memory-wall" className="hover:text-[var(--color-gold-soft)]">
             Memory Wall
           </Link>
         </nav>

@@ -35,11 +35,12 @@ export function pickHeroImages(images: readonly string[], max = 24): string[] {
 export function buildColumns(
   images: readonly string[],
   columnCount: number,
-  baseDuration = 46
+  baseDuration = 46,
+  shouldShuffle = true
 ): WallColumn[] {
   if (images.length === 0) return [];
 
-  const shuffled = shuffle(images);
+  const ordered = shouldShuffle ? shuffle(images) : [...images];
 
   const columns: WallColumn[] = Array.from({ length: columnCount }, (_, i) => ({
     images: [] as string[],
@@ -48,22 +49,24 @@ export function buildColumns(
     animationDelay: 0,
   }));
 
-  shuffled.forEach((src, i) => {
+  ordered.forEach((src, i) => {
     columns[i % columnCount].images.push(src);
   });
 
-  columns.forEach((col) => {
+  columns.forEach((col, colIndex) => {
     while (col.images.length > 0 && col.images.length < 4) {
       col.images.push(...col.images);
     }
 
-    if (col.images.length > 1) {
+    if (col.images.length > 1 && shouldShuffle) {
       const offset = Math.floor(Math.random() * col.images.length);
       col.images = [...col.images.slice(offset), ...col.images.slice(0, offset)];
     }
 
-    col.duration = baseDuration + Math.random() * 18;
-    col.animationDelay = -(Math.random() * col.duration);
+    col.duration = baseDuration + (shouldShuffle ? Math.random() * 18 : colIndex * 3);
+    col.animationDelay = shouldShuffle
+      ? -(Math.random() * col.duration)
+      : -(col.duration * ((colIndex % 5) / 5));
   });
 
   return columns;

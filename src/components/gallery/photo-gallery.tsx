@@ -16,22 +16,23 @@ export function PhotoGallery({ images }: { images: string[] }) {
 
   return (
     <>
-      <div className="columns-2 gap-4 sm:columns-3 lg:columns-4">
+      {/* CSS grid (not columns) avoids hover reflow glitches on the top row */}
+      <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 lg:grid-cols-4">
         {images.map((src, index) => (
           <button
             key={src}
             type="button"
             onClick={() => setActiveIndex(index)}
-            className="mb-4 block w-full break-inside-avoid text-left transition hover:opacity-95 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-gold)]"
+            className="group block w-full text-left focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-gold)]"
           >
-            <figure className="polaroid w-full">
+            <figure className="polaroid gallery-polaroid transition-shadow duration-200 group-hover:shadow-[0_10px_28px_rgba(0,0,0,0.55)]">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={src}
                 alt=""
                 loading="lazy"
                 decoding="async"
-                className="aspect-[4/5] h-auto w-full object-cover"
+                className="aspect-[4/5] h-auto w-full object-cover transition-[filter] duration-200 group-hover:brightness-110"
               />
             </figure>
           </button>
