@@ -15,21 +15,21 @@ export default function PhotosPage() {
   return (
     <>
       <SiteHeader />
-      <main className="mx-auto max-w-6xl px-6 py-16 sm:py-24">
-        <div className="text-center">
+      <main className="mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-24">
+        <div className="px-1 text-center sm:px-0">
           <span className="text-xs uppercase tracking-[0.35em] text-[var(--color-stone)]">
             Over the years
           </span>
-          <h1 className="mt-4 font-[family-name:var(--font-display)] text-4xl text-[var(--color-gold-soft)]">
+          <h1 className="mt-3 font-[family-name:var(--font-display)] text-3xl text-[var(--color-gold-soft)] sm:mt-4 sm:text-4xl">
             Photo gallery
           </h1>
-          <p className="mx-auto mt-4 max-w-xl text-[var(--color-stone)]">
+          <p className="mx-auto mt-3 max-w-xl text-sm text-[var(--color-stone)] sm:mt-4 sm:text-base">
             A few memories from over the years — browse them all here, or enjoy the
             scrolling wall on the home page.
           </p>
         </div>
 
-        <div className="mt-14">
+        <div className="mt-10 sm:mt-14">
           <PhotoGallery images={images} />
         </div>
       </main>

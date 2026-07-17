@@ -17,20 +17,20 @@ export default async function RsvpPage() {
   return (
     <>
       <SiteHeader />
-      <main className="mx-auto max-w-xl px-6 py-16 sm:py-24">
+      <main className="mx-auto max-w-xl px-5 py-12 sm:px-6 sm:py-24">
         <div className="text-center">
           <span className="text-xs uppercase tracking-[0.35em] text-[var(--color-stone)]">
             Kindly reply
           </span>
-          <h1 className="mt-4 font-[family-name:var(--font-display)] text-4xl text-[var(--color-gold-soft)]">
+          <h1 className="mt-3 font-[family-name:var(--font-display)] text-3xl text-[var(--color-gold-soft)] sm:mt-4 sm:text-4xl">
             RSVP
           </h1>
-          <p className="mt-4 text-[var(--color-stone)]">
+          <p className="mt-3 text-sm text-[var(--color-stone)] sm:mt-4 sm:text-base">
             Please respond by {config.rsvpDeadlineLabel} so we can plan accordingly.
           </p>
         </div>
 
-        <div className="mt-12">
+        <div className="mt-10 sm:mt-12">
           <RsvpForm />
         </div>
       </main>

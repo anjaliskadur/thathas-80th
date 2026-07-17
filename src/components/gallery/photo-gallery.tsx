@@ -17,7 +17,7 @@ export function PhotoGallery({ images }: { images: string[] }) {
   return (
     <>
       {/* CSS grid (not columns) avoids hover reflow glitches on the top row */}
-      <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 lg:grid-cols-4">
+      <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 sm:gap-4 lg:grid-cols-4">
         {images.map((src, index) => (
           <button
             key={src}

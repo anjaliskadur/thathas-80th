@@ -116,7 +116,7 @@ export function RsvpForm() {
 
       {errorMessage && <p className="text-sm text-red-400">{errorMessage}</p>}
 
-      <Button type="submit" disabled={status === "submitting"} className="mt-2">
+      <Button type="submit" disabled={status === "submitting"} className="mt-2 w-full sm:w-auto">
         {status === "submitting" ? "Sending…" : "Send RSVP"}
       </Button>
     </form>

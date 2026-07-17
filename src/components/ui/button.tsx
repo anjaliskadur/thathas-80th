@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils";
 type Variant = "solid" | "outline" | "ghost";
 
 const base =
-  "inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-medium tracking-wide transition-colors duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-gold)] disabled:opacity-50 disabled:pointer-events-none";
+  "inline-flex min-h-11 items-center justify-center gap-2 rounded-full px-6 py-3 text-base font-medium tracking-wide transition-colors duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-gold)] disabled:opacity-50 disabled:pointer-events-none sm:text-sm";
 
 const variants: Record<Variant, string> = {
   solid:

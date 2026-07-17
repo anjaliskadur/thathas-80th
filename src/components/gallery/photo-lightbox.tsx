@@ -48,14 +48,14 @@ export function PhotoLightbox({
       role="dialog"
       aria-modal="true"
       aria-label="Photo viewer"
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 p-4"
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/92 p-3 pt-[max(0.75rem,env(safe-area-inset-top))] pb-[max(0.75rem,env(safe-area-inset-bottom))] sm:p-4"
       onClick={onClose}
     >
       <button
         type="button"
         aria-label="Close"
         onClick={onClose}
-        className="absolute right-4 top-4 rounded-full p-2 text-[var(--color-ivory)] hover:bg-white/10"
+        className="absolute right-3 top-[max(0.75rem,env(safe-area-inset-top))] z-10 inline-flex h-11 w-11 items-center justify-center rounded-full text-[var(--color-ivory)] hover:bg-white/10 sm:right-4 sm:top-4"
       >
         <X className="h-6 w-6" />
       </button>
@@ -68,7 +68,7 @@ export function PhotoLightbox({
             e.stopPropagation();
             goPrev();
           }}
-          className="absolute left-2 top-1/2 -translate-y-1/2 rounded-full p-2 text-[var(--color-ivory)] hover:bg-white/10 sm:left-4"
+          className="absolute left-1 top-1/2 z-10 inline-flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full text-[var(--color-ivory)] hover:bg-white/10 sm:left-4 sm:h-14 sm:w-14"
         >
           <ChevronLeft className="h-8 w-8" />
         </button>
@@ -82,21 +82,21 @@ export function PhotoLightbox({
             e.stopPropagation();
             goNext();
           }}
-          className="absolute right-2 top-1/2 -translate-y-1/2 rounded-full p-2 text-[var(--color-ivory)] hover:bg-white/10 sm:right-4"
+          className="absolute right-1 top-1/2 z-10 inline-flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full text-[var(--color-ivory)] hover:bg-white/10 sm:right-4 sm:h-14 sm:w-14"
         >
           <ChevronRight className="h-8 w-8" />
         </button>
       )}
 
       <figure
-        className="relative max-h-[90svh] max-w-5xl"
+        className="relative mx-10 max-h-[90svh] max-w-5xl sm:mx-16"
         onClick={(e) => e.stopPropagation()}
       >
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={src}
           alt=""
-          className="max-h-[85svh] w-auto max-w-full rounded-sm object-contain shadow-2xl"
+          className="max-h-[80svh] w-auto max-w-full rounded-sm object-contain shadow-2xl sm:max-h-[85svh]"
         />
         <figcaption className="mt-3 text-center text-sm text-[var(--color-stone)]">
           {index + 1} / {images.length}

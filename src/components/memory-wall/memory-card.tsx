@@ -106,7 +106,7 @@ export function MemoryCard({
           </div>
 
           {canManage && !isEditing && (
-            <div className="flex shrink-0 gap-2">
+            <div className="flex shrink-0 gap-1">
               <button
                 type="button"
                 aria-label="Edit memory"
@@ -114,7 +114,7 @@ export function MemoryCard({
                   setDraft(memory.message ?? "");
                   setIsEditing(true);
                 }}
-                className="rounded-full p-1.5 text-[var(--color-stone)] hover:text-[var(--color-gold-soft)]"
+                className="inline-flex h-10 w-10 items-center justify-center rounded-full text-[var(--color-stone)] hover:text-[var(--color-gold-soft)]"
               >
                 <Pencil size={16} />
               </button>
@@ -123,7 +123,7 @@ export function MemoryCard({
                 aria-label="Delete memory"
                 onClick={handleDelete}
                 disabled={busy}
-                className="rounded-full p-1.5 text-[var(--color-stone)] hover:text-red-400"
+                className="inline-flex h-10 w-10 items-center justify-center rounded-full text-[var(--color-stone)] hover:text-red-400"
               >
                 <Trash2 size={16} />
               </button>
@@ -139,12 +139,12 @@ export function MemoryCard({
               rows={3}
               maxLength={1000}
             />
-            <div className="flex gap-2">
+            <div className="flex flex-wrap gap-2">
               <button
                 type="button"
                 onClick={handleSave}
                 disabled={busy}
-                className="inline-flex items-center gap-1 rounded-full bg-[var(--color-gold)] px-3 py-1.5 text-xs font-medium text-[var(--color-ink)] hover:bg-[var(--color-gold-soft)] disabled:opacity-50"
+                className="inline-flex min-h-10 items-center gap-1 rounded-full bg-[var(--color-gold)] px-4 py-2 text-sm font-medium text-[var(--color-ink)] hover:bg-[var(--color-gold-soft)] disabled:opacity-50"
               >
                 <Check size={14} /> Save
               </button>
@@ -152,7 +152,7 @@ export function MemoryCard({
                 type="button"
                 onClick={() => setIsEditing(false)}
                 disabled={busy}
-                className="inline-flex items-center gap-1 rounded-full border border-[var(--color-gold-dim)] px-3 py-1.5 text-xs text-[var(--color-stone)] hover:text-[var(--color-ivory)]"
+                className="inline-flex min-h-10 items-center gap-1 rounded-full border border-[var(--color-gold-dim)] px-4 py-2 text-sm text-[var(--color-stone)] hover:text-[var(--color-ivory)]"
               >
                 <X size={14} /> Cancel
               </button>

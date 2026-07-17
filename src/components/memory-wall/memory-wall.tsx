@@ -9,18 +9,18 @@ export function MemoryWall({ initialMemories }: { initialMemories: MemoryDTO[] }
   const [memories, setMemories] = useState<MemoryDTO[]>(initialMemories);
 
   return (
-    <div className="grid gap-12 lg:grid-cols-[380px_1fr]">
+    <div className="grid gap-8 lg:grid-cols-[380px_1fr] lg:gap-12">
       <div className="lg:sticky lg:top-24 lg:self-start">
         <MemoryUploadForm onCreated={(memory) => setMemories((prev) => [memory, ...prev])} />
       </div>
 
       <div>
         {memories.length === 0 ? (
-          <div className="hairline rounded-xl px-8 py-16 text-center text-[var(--color-stone)]">
+          <div className="hairline rounded-xl px-6 py-12 text-center text-sm text-[var(--color-stone)] sm:px-8 sm:py-16 sm:text-base">
             No memories yet — be the first to leave one for Damodar.
           </div>
         ) : (
-          <div className="grid gap-6 sm:grid-cols-2">
+          <div className="grid gap-5 sm:grid-cols-2 sm:gap-6">
             {memories.map((memory) => (
               <MemoryCard
                 key={memory.id}

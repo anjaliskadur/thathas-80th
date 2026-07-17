@@ -23,21 +23,21 @@ export default async function MemoryWallPage() {
   return (
     <>
       <SiteHeader />
-      <main className="mx-auto max-w-6xl px-6 py-16 sm:py-24">
+      <main className="mx-auto max-w-6xl px-5 py-12 sm:px-6 sm:py-24">
         <div className="text-center">
           <span className="text-xs uppercase tracking-[0.35em] text-[var(--color-stone)]">
             For {siteConfig.honoreeShortName}
           </span>
-          <h1 className="mt-4 font-[family-name:var(--font-display)] text-4xl text-[var(--color-gold-soft)]">
+          <h1 className="mt-3 font-[family-name:var(--font-display)] text-3xl text-[var(--color-gold-soft)] sm:mt-4 sm:text-4xl">
             Memory Wall
           </h1>
-          <p className="mx-auto mt-4 max-w-xl text-[var(--color-stone)]">
+          <p className="mx-auto mt-3 max-w-xl text-sm text-[var(--color-stone)] sm:mt-4 sm:text-base">
             Share a photo, video, or message — whether you&apos;ll be there in person or
             celebrating from afar. You can edit or remove anything you add.
           </p>
         </div>
 
-        <div className="mt-14">
+        <div className="mt-10 sm:mt-14">
           <MemoryWall initialMemories={initialMemories} />
         </div>
       </main>

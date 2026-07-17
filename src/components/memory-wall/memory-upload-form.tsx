@@ -107,7 +107,7 @@ export function MemoryUploadForm({ onCreated }: { onCreated: (memory: MemoryDTO)
   const busy = status === "uploading" || status === "saving";
 
   return (
-    <form ref={formRef} onSubmit={handleSubmit} className="hairline flex flex-col gap-5 rounded-xl p-6 sm:p-8">
+    <form ref={formRef} onSubmit={handleSubmit} className="hairline flex flex-col gap-5 rounded-xl p-5 sm:p-8">
       <div>
         <p className="font-[family-name:var(--font-display)] text-xl text-[var(--color-gold-soft)]">
           Leave a memory
@@ -133,7 +133,7 @@ export function MemoryUploadForm({ onCreated }: { onCreated: (memory: MemoryDTO)
           type="file"
           accept="image/*,video/*"
           onChange={handleFileChange}
-          className="w-full text-sm text-[var(--color-stone)] file:mr-4 file:rounded-full file:border-0 file:bg-[var(--color-gold)] file:px-4 file:py-2 file:text-sm file:font-medium file:text-[var(--color-ink)] hover:file:bg-[var(--color-gold-soft)]"
+          className="w-full text-sm text-[var(--color-stone)] file:mr-3 file:rounded-full file:border-0 file:bg-[var(--color-gold)] file:px-4 file:py-2.5 file:text-sm file:font-medium file:text-[var(--color-ink)] hover:file:bg-[var(--color-gold-soft)]"
         />
       </Field>
 
@@ -148,7 +148,7 @@ export function MemoryUploadForm({ onCreated }: { onCreated: (memory: MemoryDTO)
         <p className="text-sm text-[var(--color-gold-soft)]">Thank you — your memory has been added.</p>
       )}
 
-      <Button type="submit" disabled={busy} className="self-start">
+      <Button type="submit" disabled={busy} className="w-full sm:w-auto sm:self-start">
         {status === "uploading" ? "Uploading…" : status === "saving" ? "Saving…" : "Add to the wall"}
       </Button>
     </form>

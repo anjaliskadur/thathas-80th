@@ -31,12 +31,14 @@
 html {
   color-scheme: dark;
   scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
   background: var(--color-ink);
   color: var(--color-ivory);
   font-family: var(--font-body);
+  padding-bottom: env(safe-area-inset-bottom);
 }
 
 /* Fine gold hairline used throughout instead of harsh borders */

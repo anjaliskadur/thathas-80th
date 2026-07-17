@@ -2,7 +2,7 @@ import { forwardRef } from "react";
 import { cn } from "@/lib/utils";
 
 const controlStyles =
-  "w-full rounded-md border border-[var(--color-gold-dim)] bg-[var(--color-ink-raised)] px-4 py-3 text-[var(--color-ivory)] placeholder:text-[var(--color-stone)] outline-none transition-colors focus:border-[var(--color-gold)] disabled:opacity-50";
+  "w-full rounded-md border border-[var(--color-gold-dim)] bg-[var(--color-ink-raised)] px-4 py-3.5 text-base text-[var(--color-ivory)] placeholder:text-[var(--color-stone)] outline-none transition-colors focus:border-[var(--color-gold)] disabled:opacity-50";
 
 export const Input = forwardRef<HTMLInputElement, React.InputHTMLAttributes<HTMLInputElement>>(
   ({ className, ...props }, ref) => (
