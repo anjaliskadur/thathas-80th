@@ -23,11 +23,15 @@ export default async function HomePage() {
         <div className="pointer-events-none absolute inset-0 z-0">
           <PhotoWall images={wallImages} />
         </div>
+        {/* Edge fade only on desktop — phones keep the wall sharp to the edges */}
         <div
           aria-hidden
-          className="absolute inset-0 z-[1] bg-[radial-gradient(ellipse_at_center,transparent_0%,var(--color-ink)_72%)] sm:bg-[radial-gradient(ellipse_at_center,transparent_10%,var(--color-ink)_78%)]"
+          className="pointer-events-none absolute inset-0 z-[1] hidden bg-[radial-gradient(ellipse_at_center,transparent_10%,var(--color-ink)_78%)] sm:block"
         />
-        <div aria-hidden className="absolute inset-0 z-[1] bg-[var(--color-ink)]/35 sm:bg-[var(--color-ink)]/20" />
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0 z-[1] hidden bg-[var(--color-ink)]/20 sm:block"
+        />
 
         <div className="relative z-10 flex min-h-[100svh] flex-col items-center justify-center gap-5 px-0 py-20 sm:gap-6 sm:py-24">
           <WelcomeCard config={config} />
