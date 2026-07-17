@@ -23,10 +23,10 @@ export default async function HomePage() {
         <div className="pointer-events-none absolute inset-0 z-0">
           <PhotoWall images={wallImages} />
         </div>
-        {/* Edge fade only on desktop — phones keep the wall sharp to the edges */}
+        {/* Mobile: even dim across the whole wall (no edge fade). Desktop: soft vignette. */}
         <div
           aria-hidden
-          className="pointer-events-none absolute inset-0 z-[1] hidden bg-[radial-gradient(ellipse_at_center,transparent_10%,var(--color-ink)_78%)] sm:block"
+          className="pointer-events-none absolute inset-0 z-[1] bg-[var(--color-ink)]/45 sm:bg-[radial-gradient(ellipse_at_center,transparent_10%,var(--color-ink)_78%)]"
         />
         <div
           aria-hidden
